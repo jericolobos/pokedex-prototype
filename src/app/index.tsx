@@ -1,6 +1,5 @@
 // src/app/index.tsx
 import React, { useState, useMemo } from "react";
-// Added Image to the import list below
 import {
   Text,
   View,
@@ -30,6 +29,7 @@ const usePokemonSearch = (initialData: any[]) => {
   return { query, setQuery, filteredData };
 };
 
+// Reusable UI Components
 const AppButton = ({ title, onPress, backgroundColor = "#D32F2F" }: any) => (
   <TouchableOpacity
     style={[styles.button, { backgroundColor }]}
@@ -55,7 +55,29 @@ const Badge = ({ text, bgColor, textColor }: any) => (
   </View>
 );
 
-// Added image prop and Image component here
+// NEW COMPONENT: Stat Bar
+const StatBar = ({ label, value }: any) => {
+  // Assuming a max stat of 255 (actual Pokémon maximum) for the bar width percentage
+  const fillPercentage = (value / 255) * 100;
+  // Change color based on stat height (Green for high, Orange for mid, Red for low)
+  const barColor = value > 110 ? "#48BB78" : value > 80 ? "#ED8936" : "#F56565";
+
+  return (
+    <View style={styles.statRow}>
+      <Text style={styles.statLabel}>{label}</Text>
+      <Text style={styles.statValue}>{value}</Text>
+      <View style={styles.statBarBg}>
+        <View
+          style={[
+            styles.statBarFill,
+            { width: `${fillPercentage}%`, backgroundColor: barColor },
+          ]}
+        />
+      </View>
+    </View>
+  );
+};
+
 const PokemonCard = ({ name, gen, type, image, onPress }: any) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
     <Image source={{ uri: image }} style={styles.cardImage} />
@@ -77,14 +99,17 @@ const HomeScreen = ({ data, searchQuery, onSearch, onSelectPokemon }: any) => (
       value={searchQuery}
       onChangeText={onSearch}
     />
-    <ScrollView contentContainerStyle={styles.scrollList}>
+    <ScrollView
+      contentContainerStyle={styles.scrollList}
+      showsVerticalScrollIndicator={false}
+    >
       {data.map((item: any) => (
         <PokemonCard
           key={item.id}
           name={item.name}
           gen={item.gen}
           type={item.type}
-          image={item.imageUrl} // Passed image URL here
+          image={item.imageUrl}
           onPress={() => onSelectPokemon(item)}
         />
       ))}
@@ -95,22 +120,32 @@ const HomeScreen = ({ data, searchQuery, onSearch, onSelectPokemon }: any) => (
   </View>
 );
 
-// Added Image component to the Detail Screen
 const DetailScreen = ({ pokemon, onBack }: any) => (
   <View style={styles.screenContainer}>
     <View style={styles.navigationRow}>
       <AppButton title="← Back to List" onPress={onBack} />
     </View>
-    <View style={styles.detailCard}>
-      <Image source={{ uri: pokemon.imageUrl }} style={styles.detailImage} />
-      <Text style={styles.detailName}>{pokemon.name}</Text>
-      <View style={styles.badgeRow}>
-        <Badge text={pokemon.gen} bgColor="#E0E0E0" textColor="#333" />
-        <Badge text={pokemon.type} bgColor="#FFE0B2" textColor="#E65100" />
+
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.detailCard}>
+        <Image source={{ uri: pokemon.imageUrl }} style={styles.detailImage} />
+        <Text style={styles.detailName}>{pokemon.name}</Text>
+        <View style={styles.badgeRow}>
+          <Badge text={pokemon.gen} bgColor="#E0E0E0" textColor="#333" />
+          <Badge text={pokemon.type} bgColor="#FFE0B2" textColor="#E65100" />
+        </View>
+
+        <Text style={styles.sectionHeader}>Pokédex Entry</Text>
+        <Text style={styles.descriptionText}>{pokemon.desc}</Text>
+
+        <Text style={styles.sectionHeader}>Base Stats</Text>
+        <View style={styles.statsContainer}>
+          {Object.entries(pokemon.stats).map(([statName, statValue]: any) => (
+            <StatBar key={statName} label={statName} value={statValue} />
+          ))}
+        </View>
       </View>
-      <Text style={styles.sectionHeader}>Pokédex Entry</Text>
-      <Text style={styles.descriptionText}>{pokemon.desc}</Text>
-    </View>
+    </ScrollView>
   </View>
 );
 

@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
   },
   scrollList: { flexDirection: "column", gap: 12, paddingBottom: 20 },
 
-  // Updated Card Styles to fit the Image
   card: {
     backgroundColor: "#FFF",
     padding: 12,
@@ -61,7 +60,6 @@ export const styles = StyleSheet.create({
   },
   buttonText: { color: "#FFF", fontWeight: "bold", fontSize: 14 },
 
-  // Updated Detail Styles for the Image
   detailCard: {
     backgroundColor: "#FFF",
     padding: 24,
@@ -69,8 +67,8 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   detailImage: {
-    width: 200,
-    height: 200,
+    width: 180,
+    height: 180,
     resizeMode: "contain",
     alignSelf: "center",
     marginBottom: 16,
@@ -93,6 +91,32 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#2D3748",
     marginBottom: 8,
+    marginTop: 16,
   },
-  descriptionText: { fontSize: 16, lineHeight: 24, color: "#4A5568" },
+  descriptionText: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: "#4A5568",
+    marginBottom: 16,
+  },
+
+  // NEW STYLES: Stats Layout
+  statsContainer: { marginTop: 10, width: "100%" },
+  statRow: { flexDirection: "row", alignItems: "center", marginBottom: 8 },
+  statLabel: { width: 45, fontSize: 14, fontWeight: "bold", color: "#4A5568" },
+  statValue: {
+    width: 35,
+    fontSize: 14,
+    color: "#1A202C",
+    textAlign: "right",
+    marginRight: 10,
+  },
+  statBarBg: {
+    flex: 1,
+    height: 8,
+    backgroundColor: "#E2E8F0",
+    borderRadius: 4,
+    overflow: "hidden",
+  },
+  statBarFill: { height: "100%", borderRadius: 4 },
 });
