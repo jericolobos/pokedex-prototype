@@ -21,14 +21,20 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   scrollList: { flexDirection: "column", gap: 12, paddingBottom: 20 },
+
+  // Updated Card Styles to fit the Image
   card: {
     backgroundColor: "#FFF",
-    padding: 16,
+    padding: 12,
     borderRadius: 12,
     borderLeftWidth: 5,
     borderLeftColor: "#D32F2F",
     elevation: 2,
+    flexDirection: "row",
+    alignItems: "center",
   },
+  cardImage: { width: 70, height: 70, resizeMode: "contain", marginRight: 16 },
+  cardContent: { flex: 1 },
   cardHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -36,6 +42,7 @@ export const styles = StyleSheet.create({
   },
   pokemonName: { fontSize: 18, fontWeight: "bold", color: "#1A202C" },
   pokemonType: { fontSize: 14, color: "#718096", marginTop: 6 },
+
   emptyText: {
     textAlign: "center",
     color: "#718096",
@@ -53,19 +60,34 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonText: { color: "#FFF", fontWeight: "bold", fontSize: 14 },
+
+  // Updated Detail Styles for the Image
   detailCard: {
     backgroundColor: "#FFF",
     padding: 24,
     borderRadius: 16,
     elevation: 3,
   },
+  detailImage: {
+    width: 200,
+    height: 200,
+    resizeMode: "contain",
+    alignSelf: "center",
+    marginBottom: 16,
+  },
   detailName: {
     fontSize: 32,
     fontWeight: "900",
     color: "#1A202C",
     marginBottom: 12,
+    textAlign: "center",
   },
-  badgeRow: { flexDirection: "row", gap: 10, marginBottom: 24 },
+  badgeRow: {
+    flexDirection: "row",
+    gap: 10,
+    marginBottom: 24,
+    justifyContent: "center",
+  },
   sectionHeader: {
     fontSize: 18,
     fontWeight: "700",
