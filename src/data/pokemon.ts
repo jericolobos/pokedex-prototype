@@ -1,15 +1,26 @@
-// src/data/pokemon.ts
+// This array holds all the hardcoded data for the application.
+// It replaces the need for an external API fetch so the prototype works instantly and offline.
+// Each object represents one Pokémon and contains all necessary text, images, and stats for the UI.
 
 export const POKEMON_DATA = [
-  // Generation 1
+  // ==========================================
+  // GENERATION 1 (Kanto Region)
+  // ==========================================
   {
+    // Unique identifier used by React to efficiently render lists
     id: "1",
+    // Display name of the Pokémon
     name: "Articuno",
+    // Used to render the generation badge and allows the search bar to filter by "Gen 1"
     gen: "Gen 1",
+    // Used to render the type badge and allows the search bar to filter by element
     type: "Ice / Flying",
+    // Lore text displayed at the bottom of the Detail Screen
     desc: "A legendary bird Pokémon that can create blizzards.",
+    // External link to the official artwork so you don't have to download large images locally
     imageUrl:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png",
+    // Base stats data passed into the StatBar components to calculate progress bar widths
     stats: { HP: 90, Atk: 85, Def: 100, SpA: 95, SpD: 125, Spe: 85 },
   },
   {
@@ -33,7 +44,9 @@ export const POKEMON_DATA = [
     stats: { HP: 106, Atk: 110, Def: 90, SpA: 154, SpD: 90, Spe: 130 },
   },
 
-  // Generation 2
+  // ==========================================
+  // GENERATION 2 (Johto Region)
+  // ==========================================
   {
     id: "4",
     name: "Raikou",
@@ -75,7 +88,9 @@ export const POKEMON_DATA = [
     stats: { HP: 106, Atk: 90, Def: 130, SpA: 90, SpD: 154, Spe: 110 },
   },
 
-  // Generation 3
+  // ==========================================
+  // GENERATION 3 (Hoenn Region)
+  // ==========================================
   {
     id: "8",
     name: "Regirock",
